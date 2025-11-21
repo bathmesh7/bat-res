@@ -1,0 +1,111 @@
+/* Custom Cursor Styles */
+.custom-cursor,
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Outer cursor ring */
+.custom-cursor {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ff5722;
+  border-radius: 50%;
+  margin: -20px 0 0 -20px;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 0 20px rgba(255, 87, 34, 0.6), 0 0 40px rgba(255, 87, 34, 0.4),
+    0 0 60px rgba(255, 87, 34, 0.2);
+  will-change: transform;
+}
+
+/* Inner cursor dot */
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #ff5722;
+  border-radius: 50%;
+  margin: -4px 0 0 -4px;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.8), 0 0 30px rgba(255, 87, 34, 0.5),
+    0 0 45px rgba(255, 87, 34, 0.3);
+  will-change: transform;
+}
+
+/* Hover state - grow cursor */
+.custom-cursor.cursor-hover {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border-color: #ff6f3c;
+  background: rgba(255, 87, 34, 0.1);
+  box-shadow: 0 0 30px rgba(255, 87, 34, 0.8), 0 0 60px rgba(255, 87, 34, 0.6),
+    0 0 90px rgba(255, 87, 34, 0.4);
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+}
+
+.custom-cursor-dot.cursor-hover {
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  background: #ff6f3c;
+  box-shadow: 0 0 25px rgba(255, 111, 60, 1), 0 0 50px rgba(255, 111, 60, 0.7),
+    0 0 75px rgba(255, 111, 60, 0.4);
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+}
+
+/* Hide default cursor */
+body,
+a,
+button,
+[role="button"],
+.pill,
+.card-hover {
+  cursor: none !important;
+}
+
+/* Mobile - hide custom cursor */
+@media (max-width: 1024px) {
+  .custom-cursor,
+  .custom-cursor-dot {
+    display: none !important;
+  }
+
+  body,
+  a,
+  button,
+  [role="button"],
+  .pill,
+  .card-hover {
+    cursor: auto !important;
+  }
+}
+
+/* Subtle pulse animation */
+@keyframes cursor-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.6), 0 0 40px rgba(255, 87, 34, 0.4),
+      0 0 60px rgba(255, 87, 34, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 87, 34, 0.8), 0 0 60px rgba(255, 87, 34, 0.6),
+      0 0 90px rgba(255, 87, 34, 0.4);
+  }
+}
+
+.custom-cursor {
+  animation: cursor-pulse 2s ease-in-out infinite;
+}
+
+/* Performance optimization */
+.custom-cursor,
+.custom-cursor-dot {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
